@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jaswin.bookmovieservice.model.MovieBookingDTO;
 
-@FeignClient(name = "movie-service", url = "http://localhost:8080")
+@FeignClient(
+        name = "movie-service",
+        url = "http://localhost:8080",
+        fallback = com.jaswin.bookmovieservice.feign.fallback.MovieClientFallback.class
+)
 public interface MovieClient {
 
     @GetMapping("/api/movies/by-theatres-date")
